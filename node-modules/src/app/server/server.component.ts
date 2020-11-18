@@ -15,4 +15,13 @@ export class ServerComponent {
     return this.serverStatus;
   }
 
+  constructor(){
+    this.serverStatus = Math.random() > 0.5 ? 'online' : 'offline';
+  }
+
+  // tslint:disable-next-line: typedef
+  getColor(){
+    return this.serverStatus === 'online' ? 'green' : 'red';
+  }
+
 }

@@ -9,6 +9,7 @@ export class ServersComponent implements OnInit {
   allowNewServer = false;
   ServerCreationStatus = 'No server was created!';
   serverName = 'TestServer';
+  serverCreated = false;
 
   // tslint:disable-next-line: no-trailing-whitespace
   constructor() { 
@@ -20,6 +21,7 @@ export class ServersComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   OnCreatedServer(){
+    this.serverCreated = true;
     this.ServerCreationStatus = `Server was Created! Name is ${this.serverName}`;
   }
 
