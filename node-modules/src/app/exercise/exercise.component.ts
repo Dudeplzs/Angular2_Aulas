@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { equal } from 'assert';
-import { empty } from 'rxjs';
 import { isEmptyExpression } from '@angular/compiler';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { PathLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-exercise',
@@ -11,10 +10,19 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 })
 export class ExerciseComponent implements OnInit {
   username = '';
+  showSecret = false;
+  log = [];
+
 
   constructor() {}
 
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line: typedef
+  onToggleDetails(){
+    this.showSecret = !this.showSecret;
+    // this.log.push(this.log.length + 1);
+    this.log.push(new Date());
+  }
 }

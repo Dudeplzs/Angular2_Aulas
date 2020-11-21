@@ -1,4 +1,6 @@
-<label>Username</label>
+<!-- Username, Reset Button -->
+
+<!-- <label>Username</label>
 <input type="text" 
 class="form-control"
 [(ngModel)]="username">
@@ -9,6 +11,23 @@ class="form-control"
 [disabled]="username === ''"
 (click)= "username = ''"
 >Reset Username
-</button>
+</button> -->
 
-<!--  Comment 2 -->
+
+<!-- Display Button for Logs-->
+<div class="contairner">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- <button class="btn btn-primary" (click)="showSecret = !showSecret"> Display Details </button> -->
+            <button class="btn btn-primary" (click)="onToggleDetails()"> Display Details </button>
+            <p *ngIf="showSecret"> Secret Password = tuna</p>
+            <!-- Podemos fazer isto com o logItem, mas tbm com o index, a diferença é que o index começa a 0
+            já o logItem começa onde nós quisermos, que foi em 1! -->
+            <div 
+                *ngFor="let logItem of log; let i = index"
+                [ngStyle]="{'backgroundColor': i > 4 ? 'blue' : 'tranparent'}"
+                [ngClass]="{'white-text': i > 4}"
+            > {{ logItem }} </div>
+        </div>
+    </div>
+</div>
