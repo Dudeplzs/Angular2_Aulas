@@ -9,12 +9,22 @@
 </div> -->
 
 
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-xs-12">
             <h2> Exercise </h2>
             <hr>
             <app-exercise></app-exercise>
+        </div>
+    </div>
+</div> -->
+
+<div class="container">
+    <app-cockpit></app-cockpit>
+    <hr>
+    <div class="row">
+        <div class="col-xl-12">
+            <app-server-element *ngFor="let serverElement of serverElements" ></app-server-element>
         </div>
     </div>
 </div>
