@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'node-modules';
+  serverElements=[{type: 'server', name: 'Testserver', content:'Content test!'}];
 }
