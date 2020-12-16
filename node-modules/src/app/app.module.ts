@@ -9,6 +9,9 @@ import { ServersComponent } from './servers/servers.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { CockpitComponent } from './cockpit/cockpit.component';
 import { ServerElementComponent } from './server-element/server-element.component';
+import { GameControlComponent } from './exercise/game-control/game-control.component';
+import { OddComponent } from './exercise/odd/odd.component';
+import { EvenComponent } from './exercise/even/even.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { ServerElementComponent } from './server-element/server-element.componen
     ServersComponent,
     ExerciseComponent,
     CockpitComponent,
-    ServerElementComponent
+    ServerElementComponent,
+    GameControlComponent,
+    OddComponent,
+    EvenComponent
   ],
   imports: [
     FormsModule,

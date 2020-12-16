@@ -12,7 +12,8 @@ export class ExerciseComponent implements OnInit {
   username = '';
   showSecret = false;
   log = [];
-
+  oddNumbers: number[] = [];
+  evenNumbers: number[] = [];
 
   constructor() {}
 
@@ -25,4 +26,15 @@ export class ExerciseComponent implements OnInit {
     // this.log.push(this.log.length + 1);
     this.log.push(new Date());
   }
+
+  OnIntervalEmitter(intervalNumber: number){
+    if(intervalNumber % 2 === 0 ){
+      this.evenNumbers.push(intervalNumber);
+    }
+    else{
+      this.oddNumbers.push(intervalNumber);
+    }
+  }
+
+
 }
