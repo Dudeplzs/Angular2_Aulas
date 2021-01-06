@@ -1,0 +1,158 @@
+Github -> Dudeplzs
+
+VS Code Extensions
+TSLint (Microsoft)
+Material Icon Theme (Philipp Kief)
+Auto Import (steoates)
+angular2-inline (Nata Wallace)
+Angular Snippets (John Papa)
+Angular Files (Alexander Ivanichev)
+Angular 10 Snippets - TypeScript,Html... (Mikael Morlund)
+
+Section 2: The Basics, Modulo 39
+
+
+ngOnChanges -> Chamado quando valor property-biding é actualizado
+			   Chamado quando a bound input property é alterada
+ngOnInit -> Chamado quando Component é inicializado
+ngDoCheck -> Chamado a a cada change detection run
+ngAfterContentInit -> Chamado depois do conteudo (ng-content) ser projectado na view
+ngAfterContentChecked -> Chamado every time the projected contente has been checked
+ngAfterViewInit -> Chamado depois dos component's views (and child views) sere inicializados.
+ngAfterViewChecked -> Chamado cada vez que a view (and child view) forem verificados.
+ngOnDestroy -> Chamado quando a componente estiver pronta a ser destroida.
+ng lint -> Possiveis erros de sintax
+ng test/e2e(EndToEnd) -> Testes Unitários
+[hidden] -> Recomendado de Árvore de elementos pequenos
+*ngIf -> Recomendado de Árvore de elementos grandes (Directives)
+	Quando usamos o If Condition, fazemos com que a "propriedade" desapareça do DOM, não fica escondida simplesmente não existe
+Augury
+
+Comunicação entre o TsCode e o HTML (=>)
+Output Data
+String Interpolation {{ data }} -> Mostra o valor da variável data
+Property Biding [correr] = "devagar" -> Modifica a propriedade [correr] com a informação passada pelo "devagar"
+									    Isto é: A propriedade [correr] fica alterada para ser uma corrida mais devagar.
+										
+Reacção ao evento provocado pelo "user" (<=)
+Event Biding (event) = "expression" -> Quando o "user" carrega em algo na página a informação passa para o TsCode
+
+Two-Way-Biding (<=>)
+[(ngModel)] = "data" -> Reage aos evento e mostra a informação ao mesmo tempo.
+
+funciton() {} -> () => {} 
+
+$event -> recebe a informação (data)
+
+Comparação
+=== -> Compara dois objecto da mesma natureza (Mais usual)
+== -> Caso os objectos não sejam da mesma natureza ele converte o primeiro para fazer a comparação
+
+@Input('alias') -> Passa a informação para dentro do componente. (Passa para o filho)
+Se quisermos por um alias na propriedade do componente colocamos onde está o alias, no entanto para o chamarmos
+no Html temos que usar o alias, pois ele já não reconhece o nome.
+
+@Output () -> Passar a informação para fora do Componente. Fica listenable from outside.
+Quando o filho emite um evento o pai fica à escuta para lhe passar o evento.
+
+Passar o CSS para dentro do component
+O Angular força de modo a que, o que está no CSS é para ser usado para tudo,
+no entanto o Browser não se comporta da mesma maneira
+Se usarmos o encapsulation: ViewEncapsulation.None (Emulated é o default) conseguimos fazer com 
+que toda a nossa página assuma o CSS que colocámos, por exemplo:
+p {color: blue;}
+
+Local References
+Ao defenirmos a variável no Html, faz com que esta não precise de estar hardcoded.
+
+
+Outra alternativa ao Two-way-biding
+Se usarmos o Local References que é passado para o método
+Ou Se usarmos o Local References fetch to @ViewChild
+@ViewChild -> Serve para passar a referência antes do método ser chamado.
+@ContentChild -> ??
+
+Qq coisa que se coloca entre a opening e a closing tag do component é perdido por default
+Contudo se colocarmos o <ng-content></ng-content> ele consegue apanhar a informação.
+
+<img>
+src="{{ recipe.imagePath }}"   (String Interpolation)
+o resultado é o mesmo que 
+[src] = "recipe.imagePath" (Property Biding)
+
+Usar a o "push" só é possível quando para além de declarar-mos a variavél a inicializamos, caso contrário 
+ele não vai conseguir usar o push e vai dar um erro de !Cannot read property 'push' of udefined!
+
+Não fazer!!
+this.serverContentInput.nativeElement.value = 'asd'
+
+Não é possível fazer listen de um evento de um child de um child!!
+
+Caso queiremos usar um if para o qual apareça alguma coisa quando a condição for falsa.
+Dummy Text:
+<ng-template #infoText>
+	<p>Please select a Recipe!</p>
+</ng-template>
+
+Se não tivermos a pensar em mudar a variável, defenimo-la como const -> contante
+C.C. defenimos como let.
+
+Attribute Directives (elements)
+-Look like a normal html attribute (possibly with databiding or event biding)
+-Only affect/change the element they are added to
+Aqui nunca destruimos/adicionamos/alteramos elementos do DOM.
+
+Structural Directives (Structure)
+-Look like a notmal HTML Attribute but have a leading * (for desugaring)
+-Affect a whole are in the DOM (elements get added/removed)
+Aqui destruimos/adicionamos/alteramos elementos do DOM, deixam de existir por completo
+
+Apenas podemos ter um unico structural directive num elemento.
+Exp: *ngIf
+Se tivermos <button class="btn btn-primary" *ngIF="..." *ngFor="...", isto não é possível!!
+
+Renderer2 (Class)
+Em vez de usarmos 
+-O ElementRef directamente
+ export class BasicHighlightDirective implements OnInit{
+     constructor(private elementRef:ElementRef)}
+     ngOnInit(){
+         this.elementRef.nativeElement.style.backgroundColor = 'green';}}
+-Usamos o Renderer2
+ export class BetterHighlightDirective implements OnInit{
+  constructor(private eleRef:ElementRef, private renderer: Renderer2) { }
+  ngOnInit(){
+    this.renderer.setStyle(this.eleRef.nativeElement, 'background-color', 'green');}}
+	
+HostBinding (Opcional ao Renderer)
+
+HostListener (Decorator)
+Declara um evento no DOM para que seja ouvido (listen)
+Quando esse evento ocorre responde com o método definido.
+		
+		
+######################################################################################################
+info@liqui.do
+Landing Jobs
+formaçõesCandor
+
+
+O caracol é um animal que desliza no orvalho, faz curvas a 120. Ups! tropecei fui com o crlh
+
+Helena Flor
+Telefone: 214 122 200
+E-mail: helena.flor@capgemini
+Help Desk CapGemini 21 412 2200
+
+
+Dud3plz
+TartarugaP10
+
+
+1+2 até 50%
+2+3 até 50%
+1+3 till end
+4+5 till end
+
+https:\\covid19estamoson.cov.pt/apoio-digital-aos-profissionais-de-saude/#
+
