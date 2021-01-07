@@ -6,27 +6,43 @@
       (click)="onlyOdd = !onlyOdd">Show numbers</button>
       <br><br>
       <ul class="list-group">
-      <div *ngIf="!onlyOdd">
-        <li 
-        class="list-group-item"
-        [ngClass]="{'even': even % 2 == 0}"
-        *ngFor="let even of evenNumbers">
-        {{ even }}
-        </li>
-      </div>
+        <!-- <div *ngIf="!onlyOdd">
+                    <li 
+                    class="list-group-item"
+                    [ngClass]="{'even': even % 2 == 0}"
+                    [ngStyle]="{'backgroundColor': even % 2 !== 0 ? 'DeepSkyBlue' : 'transparent' }"
+                    *ngFor="let even of evenNumbers">
+                    {{ even }}
+                    </li>
+                  </div> -->
         <div *ngIf="onlyOdd">
           <li 
-          class="list-group-item"
+          class="list-group-item" 
           [ngClass]="{'odd': odd % 2 !== 0}"
-          [ngStyle]="{'backgroundColor': odd % 2 !== 0 ? 'DeepSkyBlue' : 'transparent' }"
+          [ngStyle]="{'backgroundColor': odd % 2 !== 0 ? 'DeepSkyBlue' : 'transparent' }" 
           *ngFor="let odd of oddNumbers">
           {{ odd }}
           </li>
-        </div>  
+        </div>
+        <div *appUnless="onlyOdd">
+          <li 
+          class="list-group-item" 
+          [ngClass]="{'even': even % 2 == 0}"
+          [ngStyle]="{'backgroundColor': even % 2 !== 0 ? 'DeepSkyBlue' : 'transparent' }" 
+          *ngFor="let even of evenNumbers">
+          {{ even }}
+          </li>
+        </div>
       </ul>
-      <br>
-      <p appBasicHighlight> Style me with Basic Directive!</p>
-      <p appBetterHighlight> Style me with Better Directive!</p>
-    </div>
-  </div>
-</div>
+        <br>
+        <p appBasicHighlight> Style me with Basic Directive!</p>
+        <p appBetterHighlight [defaultColor]="'purple'" [highLightColor]="'red'"> Style me with Better Directive!</p>
+        <div [ngSwitch]="value">
+          <p *ngSwitchCase="1">Valeu is 1</p>
+          <p *ngSwitchCase="5">Valeu is 5</p>
+          <p *ngSwitchCase="10">Valeu is 10</p>
+          <p *ngSwitchCase="15">Valeu is 15</p>
+        </div>
+        </div>
+        </div>
+        </div>
