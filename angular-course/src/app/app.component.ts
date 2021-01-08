@@ -8,7 +8,7 @@ import { Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  selectorStored = 'recipe';
+  selectorStored = 'recipes';
 
   onNavBarSelected(selectorChoose: string){
     this.selectorStored=selectorChoose;
