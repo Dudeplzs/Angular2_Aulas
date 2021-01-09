@@ -129,8 +129,83 @@ HostBinding (Opcional ao Renderer)
 HostListener (Decorator)
 Declara um evento no DOM para que seja ouvido (listen)
 Quando esse evento ocorre responde com o método definido.
-		
-		
+
+
+Behind the Scene
+
+Quando temos *ng... por exemplo *ngIf, aqui o que o angular vai fazer é transformar o * em alguma que ele conheça
+Como, Property Biding, Event Biding, Two-way Biding ou String Interpolation.
+Neste caso, ele transforma o * em Property Biding.
+E ao termos *ngIf, se a condição for verdadeira ele tranforma
+Isto:
+1+
+<div *ngIf="!onlyOdd">
+        <li 
+        class="list-group-item"
+        [ngClass]="{'even': even % 2 == 0}"
+		[ngStyle]="{'backgroundColor': even % 2 !== 0 ? 'DeepSkyBlue' : 'transparent' }"
+        *ngFor="let even of evenNumbers">
+        {{ even }}
+        </li>
+      </div>
+Em:
+2+
+<ng-template [ngIf]="!onlyOdd">
+ <li 
+        class="list-group-item"
+        [ngClass]="{'even': even % 2 == 0}"
+		[ngStyle]="{'backgroundColor': even % 2 !== 0 ? 'DeepSkyBlue' : 'transparent' }"
+        *ngFor="let even of evenNumbers">
+        {{ even }}
+        </li>
+      </div>
+<ng-template>
+
+E se em 1+ tinhamos *ngIf, em 2+ temos apenas ngIf, sem *. 
+
+Se tivermos 
+-@Input() set something() {}
+A propriedade passa a ter um set, tornando assim um método.
+Este método é executado cada vez que a propriedade é alterada.
+Esta propriedade só é alterada cada vez que a condilção que passamos é alterado ou algum parâmetro dessa condição é alterado.
+Esta propriedade (método) é alterada fora da directive que foi criada.
+
+ViewContainerRef (class)-> Representa um container onde se pode fazer attach de um ou mais componentes.
+TemplateRef (class) -> Representa um embedded template, onde se podem instanciar embedded views.
+						Podemos instanciar estas embedded views com ViewContainerRef método (createEmbeddedView()).
+						
+Services
+Quando criamos um Service, por exemplo de Logging não devemos criar as instâncias manualmente.
+Fazer: 
+	const service = new LoggingService();
+	service.logStatusChange(accountStatus);
+Não é o correcto para usar um Logging Service
+
+Maneira correcta de fazer
+-Angular Dependecy injection
+	Dependecy -> Uma classe nossa depende de outra
+		Exp:  New Account Component, depende do Logging Services, pq quer chamar um métodos nesse serviço.
+	Dependecy Injector -> Injecta uma instância dessa class no nosso componente, automáticamente.
+O que precisamos de fazer é informar o Angular que precisamos dessa instância.
+
+Hierarchical Injector
+AppModule -> A mesma instância do Serviço está disponível para toda a aplicação (Application-wide)
+AppComponent -> A mesma instância do Serviso está disponível, para todos os Componentes, mas não para outros Serviços)
+Any Other Componente -> A mesma instância do Serviço está disponível para o Componente e para todos os seus childs.
+
+Override
+Ter em atenção aos Overrides, se instanciarmos um serviço na AppComponent e posteriormente nos seus childs, por exp: AppComponentChild1,AppComponentChild2
+O que vai acontecer é que vamos fazer Override(AppComponentChild1,AppComponentChild2) ao Serviço instanciado na AppComponent.
+!Para isto não ocorrer, removemos do "providers" dos Childs, o Serviço ao qual estamos a fazer Override.
+
+@Injectable()
+Se injectarmos um Serviço em algo, este algo precisa de ter um metadata, por exemplo: @Directive, @Component.
+Logo o metada que vamos colocar vai ser o @Injectable(), pois por exp, no caso de uma classe Services, esta não tem nenhum metadata.
+Este metadata é inserido no algo que recebe este Serviço, pois estamos a injectar-lhe algo.
+	
+.slice()
+Estrai uma parte do array e retorna um novo array. Quando deixamos a vazio ele vai retornar uma copia igual ao array.
+	
 ######################################################################################################
 info@liqui.do
 Landing Jobs

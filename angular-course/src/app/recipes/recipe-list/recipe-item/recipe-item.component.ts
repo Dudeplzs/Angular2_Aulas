@@ -1,3 +1,4 @@
+import { RecipeService } from './../../recipe.service';
 import { Recipe } from './../../recipes.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
@@ -9,15 +10,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class RecipeItemComponent implements OnInit {
   //Prcisamos de ir buscar a class Recipes do recipe.model.ts para ele a poder passar para o componente
   @Input() recipe: Recipe; 
-  @Output() showRecipeItemEmitor = new EventEmitter<void>();
+  // @Output() showRecipeItemEmitor = new EventEmitter<void>();
+ 
+  constructor(private recipeService: RecipeService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   onShowRecipeItem(){
-    this.showRecipeItemEmitor.emit();
+    //Aqui vamos emitir o evento "recipeSelected"
+    this.recipeService.recipeSelected.emit(this.recipe);
+    // this.showRecipeItemEmitor.emit();
   }
 
 }

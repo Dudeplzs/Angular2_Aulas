@@ -1,3 +1,5 @@
+import { LoggingService } from './logg/logging.service';
+import { AccountsService } from './Accounts.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,7 +20,9 @@ import { NewAccountComponent } from './new-account/new-account.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    AccountsService,
+    LoggingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
