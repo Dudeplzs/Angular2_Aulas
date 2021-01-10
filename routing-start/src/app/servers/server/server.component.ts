@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ServersService } from '../servers.service';
 
 @Component({
@@ -16,4 +15,5 @@ export class ServerComponent implements OnInit {
     this.server = this.serversService.getServer(1);
   }
 
+  
 }
