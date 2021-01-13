@@ -31,8 +31,8 @@ export class UserComponent implements OnInit {
   }
 
   // tslint:disable-next-line: use-life-cycle-interface
-  ngOnDestroy() {
-    this.paramsSubscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.paramsSubscription.unsubscribe();
+  // }
 
 }
