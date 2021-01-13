@@ -205,7 +205,57 @@ Este metadata é inserido no algo que recebe este Serviço, pois estamos a injec
 	
 .slice()
 Estrai uma parte do array e retorna um novo array. Quando deixamos a vazio ele vai retornar uma copia igual ao array.
-	
+
+Routing
+De modo a que ao navegarmos pelas páginas no URL aparece o nome da página para onde queremos navegar.
+Temos de adicionar no app.module.ts 
+
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'users', component: UsersComponent },
+  { path: 'servers', component: ServersComponent }
+];
+
+imports: [
+...
+RouterModule.forRoot(appRoutes)
+]
+E na appComponent adicionar <router-outlet></router-outlet>
+Se fizermos <a href="/users">, por exemplo, vamos para á página dos users, contudo a aplicação faz reload.
+Uma maneira de controlar isto é usar o routerLink="/users" ou [routerLink]="['/users']"
+
+Paths:
+
+/sometging -> Absolute Path, fica appended ao Route Domain.
+./something ou /something -> Relative Path, Adiciona ao current path loaded. 
+../something -> Anda um(ou mais) path para trás e vai para /something.
+
+A página onde estamos só fica kinda "highlighted" quando estamos nela, caso seja uma home page, por exp.
+routerLinkActive ="active"
+[routerLinkActiveOptions]="{exact : true}"
+
+ActivatedRoute -> Dá acesso ao id (parametro dos users) que foi passado no URL
+snapshot -> For first Instance
+Observables (params) [funciona para asynchronous tasks] -> 
+Faz subscrever um evento que poderá acontecer no futuro para dps executar algo quando acontecer, sem termos de esperar. 
+Quando o componente é destroido, o Observable não é, encontra-se em memória.
+Quando se cria um Observable convem fazer-lhe unsubscribe para quando o ngOnDestroy actuar este observable deixar de estar em memória.
+
+Passing -QueryParams and Fragments-
+Conseguimos usar o -QueryParams and Fragments-
+-A nível de código:
+	 onLoadServers(id: number){
+    // Do Something
+    this.router.navigate(['/servers', id, 'edit'], {queryParams: {allowEdit: '1'}, fragment: 'loading'});
+  }
+-A nível de HTML, routingLink
+[routerLink] ="['/servers', 5, 'edit']"
+        [queryParams]="{allowEdit: '1'}"
+        fragment ="loading"
+		
+Retrieving -QueryParams and Fragments-
+
+
 ######################################################################################################
 info@liqui.do
 Landing Jobs
