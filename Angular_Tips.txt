@@ -254,7 +254,39 @@ Conseguimos usar o -QueryParams and Fragments-
         fragment ="loading"
 		
 Retrieving -QueryParams and Fragments-
+console.log(this.route.snapshot.queryParams);
+console.log(this.route.snapshot.fragment);
+this.route.queryParams.subscribe();
+this.route.fragment.subscribe();
 
+Child Routes
+Para quando selecionamos uma Componente Child, esta aparecer na "main page" da Componente Pai.
+Por exemplo: 
+	Se tivermos servers -> Pai Componente, server -> Child Component
+	Ao clicarmos em algo no servers(Pai) que seja do server(Child), não irmos para a "página" do server(Child), mas sim ficarmos
+	na página do servers(Pai)
+Para isto acontecer temos de:
+-No app.module adicionar:
+	children: [
+	{ path: ':id', component: ServerComponent },
+    { path: ':id/edit', component: EditServerComponent }]
+-No servers.html adicionar:
+<router-outlet>
+Sendo que temos de tirar os Child Components que ele esteja a usar no html.
+
+queryParamsHandling -> Explicação
+
+If you change the route from one url to another:
+-/firstUrl?name=bat7 to /secondUrl 
+that time you need to say:
+-this.router.navigate(['/secondUrl'], { queryParamsHandling: 'preserve' });
+So that the queryParam "name" will not be lost
+-http://localhost:4200/secondUrl?name=bat7
+and if you say merge like,
+-this.router.navigate(['/secondUrl/newVal'], { queryParams: { age: 'not-known'}, queryParamsHandling: 'merge' });
+It would be like below
+-http://localhost:4200/secondUrl?name=bat7&age=not-known
+The same query parameter can be taken to different routes and merged with needed params.
 
 ######################################################################################################
 info@liqui.do

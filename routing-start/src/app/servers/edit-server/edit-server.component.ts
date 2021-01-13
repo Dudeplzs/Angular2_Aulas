@@ -22,10 +22,10 @@ export class EditServerComponent implements OnInit {
     console.log(this.route.snapshot.fragment);
     this.route.queryParams.subscribe(
       (queryParams: Params) => {
-        // if(queryParams['allowEdit'] === 3){
+        // if(queryParams['allowEdit'] === '1'){
         //   this.allowEdit = true;
         // }
-        this.allowEdit = queryParams['allowEdit'] === 3 ? true : false;
+        this.allowEdit = queryParams['allowEdit'] === '1' ? true : false;
       }
     );
     this.route.fragment.subscribe();

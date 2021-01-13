@@ -29,6 +29,10 @@ export class ServerComponent implements OnInit {
 
   onEdit(){
     // Temos de adicionar {relativeTo: this.route}, para o angular router saber para que route relativo ele tem de ir
-    this.router.navigate(['edit'], {relativeTo: this.route});
+    /* Cada vez que carregamos num servidor ele não está a perservar a informação do allowEdit,
+       então para conseguirmos obter a informação do allowEdit "anterior" temos que usar o queryParamsHandling,
+       onde vamos perservar a informação que nos foi dada "antes"
+    */
+    this.router.navigate(['edit'], {relativeTo: this.route, queryParamsHandling: 'preserve'});
   }
 }
