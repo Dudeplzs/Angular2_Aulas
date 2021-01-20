@@ -7,17 +7,17 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthGuard implements CanActivate {
     constructor(private authService: AuthService,
-                private route: Router) {}
+                private router: Router) {}
 
     canActivate(route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): Observable<boolean> | Promise <boolean> | boolean {
         return this.authService.isAuthenticated().then(
-            (authentucated: boolean) => {
-                if (authentucated) {
+            (authenticated: boolean) => {
+                if (authenticated) {
                     return true;
                 } else  {
                     // tslint:disable-next-line: no-unused-expression
-                    this.route.navigate['/'];
+                    this.router.navigate(['/']);
                     return false;
                 }
             }
@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivateChild(route: ActivatedRouteSnapshot,
-                    state: RouterStateSnapshot): Observable <boolean> | Promise <boolean> | boolean{
+                    state: RouterStateSnapshot): Observable <boolean> | Promise <boolean> | boolean {
         return this.canActivate(route, state);
 
     }

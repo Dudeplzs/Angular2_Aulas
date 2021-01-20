@@ -1,8 +1,7 @@
-// tslint:disable-next-line: one-line
-export class AuthService{
+export class AuthService {
     loggedIn = false;
 
-    isAuthenticated(){
+    isAuthenticated() {
         const promise = new Promise(
             (resolve, reject) => {
                 setTimeout(() => {
