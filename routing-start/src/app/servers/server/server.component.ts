@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Data, Params, Router } from '@angular/router';
 import { ServersService } from '../servers.service';
 
 @Component({
@@ -15,7 +15,17 @@ export class ServerComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    // Vamos passar o id como string, por exemplo '1', de modo a ele ser um numero temos de colocar um +
+    // Aqui em vez de usarmos o que está no ponto 1, vamos usar o resolve!!
+    this.route.data.subscribe(
+      (data: Data) => {
+        this.server = data ['server'];
+      }
+    );
+
+
+    /*
+    // Ponto 1
+    Vamos passar o id como string, por exemplo '1', de modo a ele ser um numero temos de colocar um +
     const id = +this.route.snapshot.params['id'];
     this.server = this.serversService.getServer(id);
     // Caso seja necessário reagir a qq alterção que haja, isto é caso seja escolhido outro server
@@ -25,6 +35,7 @@ export class ServerComponent implements OnInit {
         this.server = this.serversService.getServer(+params['id']);
       }
     );
+    */
   }
 
   onEdit(){
