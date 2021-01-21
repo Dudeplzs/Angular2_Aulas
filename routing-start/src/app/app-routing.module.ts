@@ -1,3 +1,4 @@
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { CanDeactivateGuard } from './servers/edit-server/can-deactivate-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -31,8 +32,9 @@ const appRoutes: Routes = [
       canDeactivate: [CanDeactivateGuard] }
       ]
     },
-    {path: 'page-not-found', component: PageNotFoundComponent},
-    {path: '**', redirectTo: '/page-not-found'}
+    // {path: 'page-not-found', component: PageNotFoundComponent},
+    {path: 'not-found', component: ErrorPageComponent, data: {message: 'Page Not Found!'} },
+    {path: '**', redirectTo: '/not-found'}
   ];
 
   @NgModule({

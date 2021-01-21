@@ -55,6 +55,7 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
     if (!this.allowEdit) {
       return true;
     }
+    // Caso tenham (o serverName ou o server status tenha sido alterado) E (Essas alterações não tenham sido gravadas)
     if ((this.serverName !== this.server.name || this.serverStatus !== this.server.status) && !this.savedChanges) {
       return confirm ('Changes were made and you didnt saved them');
     } else {
