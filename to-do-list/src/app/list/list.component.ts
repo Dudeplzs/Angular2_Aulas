@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -7,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  cenas = '';
   lista = [];
+  checkBoxStatus = false;
 
   constructor() { }
 
-  ngOnInit(): void {
+  // tslint:disable-next-line: typedef
+  ngOnInit() {
   }
 
   // tslint:disable-next-line: typedef
@@ -27,12 +28,14 @@ export class ListComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  onRemoveItem(){
-    // tslint:disable-next-line: whitespace
-    // tslint:disable-next-line: prefer-for-of
-    for (let i; i<this.lista.length; i++){
-      this.lista.splice(i,1);
-    }
+  onRemoveItem(index: number){
+    this.lista.splice(index, 1);
+  }
+
+  // tslint:disable-next-line: typedef
+  onCheckboxClick(){
+    this.checkBoxStatus = !this.checkBoxStatus;
+    console.log(this.checkBoxStatus);
   }
 
 

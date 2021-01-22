@@ -11,14 +11,31 @@
         <button 
         class="btn btn-danger" 
         (click)="onClear()">Clear List</button>
-        <button 
+        <!-- <button 
         class="btn btn-warning" 
         (click)="onRemoveItem()">Remove Item</button>
-        <br><br>
+        <br><br> -->
         <ul class="list-group">
             <li 
             class="list-group-item"
-            *ngFor="let elements of lista"> {{ elements }} </li>
+            *ngFor="let elements of lista; let i=index">
+            <div class="row">
+                <div class="col-xs">
+                    <div class="form-check">
+                        <input type="checkbox" (change)="onCheckboxClick()">
+                    </div>
+                </div>
+                <div class="col"
+                    [ngClass]="!checkBoxStatus ? 'null' : 'strikethrough' ">{{ elements }}
+                </div>
+                <div class="float-right">
+                    <button 
+                        class="btn btn-warning" 
+                        (click)="onRemoveItem(i)">Delete
+                    </button>
+                </div>
+            </div>
+        </li>
         </ul>
     </div>
 </div>
