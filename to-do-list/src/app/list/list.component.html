@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <input 
+            type="text"
+            #cenasInput>
+            <button 
+            class="btn btn-primary" 
+            (click)="onGo(cenasInput)">Go</button>
+        </div>
+        <button 
+        class="btn btn-danger" 
+        (click)="onClear()">Clear List</button>
+        <button 
+        class="btn btn-warning" 
+        (click)="onRemoveItem()">Remove Item</button>
+        <br><br>
+        <ul class="list-group">
+            <li 
+            class="list-group-item"
+            *ngFor="let elements of lista"> {{ elements }} </li>
+        </ul>
+    </div>
+</div>

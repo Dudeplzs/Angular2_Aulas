@@ -241,7 +241,7 @@ Faz subscrever um evento que poderá acontecer no futuro para dps executar algo 
 Quando o componente é destroido, o Observable não é, encontra-se em memória.
 Quando se cria um Observable convem fazer-lhe unsubscribe para quando o ngOnDestroy actuar este observable deixar de estar em memória.
 
-Passing -QueryParams and Fragments-
+-Passing -QueryParams and Fragments-
 Conseguimos usar o -QueryParams and Fragments-
 -A nível de código:
 	 onLoadServers(id: number){
@@ -253,11 +253,23 @@ Conseguimos usar o -QueryParams and Fragments-
         [queryParams]="{allowEdit: '1'}"
         fragment ="loading"
 		
-Retrieving -QueryParams and Fragments-
+-Retrieving -QueryParams and Fragments-
 console.log(this.route.snapshot.queryParams);
 console.log(this.route.snapshot.fragment);
 this.route.queryParams.subscribe();
 this.route.fragment.subscribe();
+»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
+ // Vamos passar o id como string, por exemplo '1', de modo a ele ser um numero temos de colocar um +
+    const id = +this.route.snapshot.params['id'];
+    this.server = this.serversService.getServer(id);
+    // Caso seja necessário reagir a qq alterção que haja, isto é caso seja escolhido outro server
+    this.route.params.subscribe(
+      (params: Params) => {
+        // Aqui o + serve tbm para transformar o id num número
+        this.server = this.serversService.getServer(+params['id']);
+      }
+    );
+
 
 Child Routes
 Para quando selecionamos uma Componente Child, esta aparecer na "main page" da Componente Pai.
@@ -275,7 +287,6 @@ Para isto acontecer temos de:
 Sendo que temos de tirar os Child Components que ele esteja a usar no html.
 
 queryParamsHandling -> Explicação
-
 If you change the route from one url to another:
 -/firstUrl?name=bat7 to /secondUrl 
 that time you need to say:
@@ -287,6 +298,84 @@ and if you say merge like,
 It would be like below
 -http://localhost:4200/secondUrl?name=bat7&age=not-known
 The same query parameter can be taken to different routes and merged with needed params.
+
+Page-Not-Found
+Quando queremos "controlar" o que é escrito no URL, podemos adicionar um coponente que seja de "page-not-found".
+Para redecionar o user para o Componente, no app-module colocamos:
+-{path: 'page-not-found', component: PageNotFoundComponent},
+ {path: '**', redirectTo: '/page-not-found'}
+Atenção, temos de colocar este código no final pois o Angular funciona de forma Descendente!!
+
+Quando temos muitas Routes no app.module, o melhor é criar um ficheiro à parte de app-routing.module.ts, para incluir
+as routes que queres de modo a não encher o app.module.
+
+
+Se quisermos que um componente não seja acedido por não autenticação (por exp)
+Vamos usar o -canActivate: [AuthGuard]-
+Criamos 2 serviços:
+-auth -> que serve para fazer a authenticação, loggin/loggout/isAuthenticad 
+-auth-guard -> Que vai validar a informação dada pelo auth e usar o método canActivate
+	canActivate(route: ActivatedRouteSnapshot,
+                state: RouterStateSnapshot): Observable<boolean> | Promise <boolean> | boolean {
+        return this.authService.isAuthenticated().then(
+            (authentucated: boolean) => {
+                if (authentucated) {
+                    return true;
+                } else  {
+                    // tslint:disable-next-line: no-unused-expression
+                    this.route.navigate['/'];
+                    return false;
+                }
+            }
+        );
+Para caso o não estejemos logados ele redireciona-nos para a page home.
+Fazendo assim com que não seja possível aceder à Componente servers.
+Nota: canActivate, usa um observable boolean, que pode ser assincrono, uma promise ou um boolean normal.
+
+No caso de queremos restringir o acesso a um ou mais Component Child, usamos o canActivateChild, que usa o canActivate.
+Ter em atenção que temos de definir este canActivateChild no routing path para o Component Pai que queremos.
+No nosso caso fizemos:
+{ path: 'servers',
+    // canActivate: [AuthGuard],
+ -> canActivateChild: [AuthGuard], <- Aqui!!
+    component: ServersComponent,
+      children:
+      [
+        { path: ':id', component: ServerComponent },
+        { path: ':id/edit', component: EditServerComponent }
+      ]
+    }, 
+
+	
+Interface 
+(Existem vários layers de interface: 
+Command line(cli)/graphical user(gui)/menu drive(mdi)/form based(fbi)/natural language(nli))
+É o "contracto", que pode ser importada por outras classes, sendo que obriga essas classes a dar alguma lógica.
+Uma Interface não contém lógica apenas a informação de como as coisas devem ser.
+Exp:
+	public interface Vehicle{
+		function start_engine(): void;
+	}
+»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»
+	public class Car implements Vehicle{
+		function start_engine(): void {
+			//código
+		}
+	}
+Aqui o método start_engine() está criado na interface, sendo que quando esta interface for implementada por outra class este método tem de ser inicializado.
+Cada método da interface po ter código diferente dependendo da classe.
+ 
+-Resolve (Angular Interface)
+A route espera que a informação seja concretizada e só dps é que fica activa.
+Esta interface tem um métido que é o resolve()
+
+Se o server que está a fazer hosting à app não conhecer a route, vai aparecer o erro (404 Error Page not Found)
+Caso isto aconteça temos de garantir que o web Server retorna o nosso html file.
+Se por algum motivo essa situação não seja possível ou o browser não suporte a versão o que temos de fazer é:
+-RouterModule.forRoot(appRoutes, {useHash: true})
+Por default é useHash é false. 
+
+
 
 ######################################################################################################
 info@liqui.do
@@ -313,3 +402,4 @@ TartarugaP10
 
 https:\\covid19estamoson.cov.pt/apoio-digital-aos-profissionais-de-saude/#
 
+S5RJIKZYGP
