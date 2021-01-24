@@ -1,5 +1,5 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { LogService } from './../logg.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -7,10 +7,10 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  lista = [];
-  checkBoxStatus = false;
+  lista: ListElement [] = [];
+  // checkBoxStatus = false;
 
-  constructor() { }
+  constructor(private logservice: LogService) { }
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
@@ -18,7 +18,8 @@ export class ListComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   onGo(nameInput: HTMLInputElement){
-    this.lista.push(nameInput.value);
+    const listElement: ListElement = {text: nameInput.value, status: false};
+    this.lista.push(listElement);
     console.log(this.lista);
   }
 
@@ -33,10 +34,16 @@ export class ListComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  onCheckboxClick(){
-    this.checkBoxStatus = !this.checkBoxStatus;
-    console.log(this.checkBoxStatus);
+  onCheckboxClick(element: ListElement){
+    element.status = !element.status;
+    // this.lista[index];
+    this.logservice.logChange(element.text, element.status);
   }
 
 
+}
+
+export interface ListElement{
+  text: string;
+  status: boolean;
 }

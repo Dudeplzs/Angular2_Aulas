@@ -18,15 +18,16 @@
         <ul class="list-group">
             <li 
             class="list-group-item"
-            *ngFor="let elements of lista; let i=index">
+            *ngFor="let element of lista; let i=index">
             <div class="row">
                 <div class="col-xs">
                     <div class="form-check">
-                        <input type="checkbox" (change)="onCheckboxClick()">
+                        <input type="checkbox" (change)="onCheckboxClick(element)">
                     </div>
                 </div>
                 <div class="col"
-                    [ngClass]="!checkBoxStatus ? 'null' : 'strikethrough' ">{{ elements }}
+                    [class.strikethrough]=" element.status === true"
+                    >{{ element.text }}
                 </div>
                 <div class="float-right">
                     <button 
