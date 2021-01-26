@@ -1,0 +1,28 @@
+<a>
+The <a> tag defines a hyperlink, which is used to link from one page to another.
+The most important attribute of the <a> element is the href attribute, which indicates the link's destination.
+
+By default, links will appear as follows in all browsers:
+An unvisited link is underlined and blue
+A visited link is underlined and purple
+An active link is underlined and red
+Tip: If the <a> tag has no href attribute, it is only a placeholder for a hyperlink.
+Tip: A linked page is normally displayed in the current browser window, unless you specify another target.
+-----------------------------------------------------------------------------------------------------------------
+<Span>
+The <span> tag is an inline container used to mark up a part of a text, or a part of a document.
+The <span> tag is easily styled by CSS or manipulated with JavaScript using the class or id attribute.
+The <span> tag is much like the <div> element, but <div> is a block-level element and <span> is an inline element.
+-----------------------------------------------------------------------------------------------------------------
+<strong>(HTML)
+Realça o texto em questão, por default fica em Bold, no entanto podemos alterar as propriedades do texto como quisermos
+Como colocar uma letra maior, uma cor diferente, and so on.
+-----------------------------------------------------------------------------------------------------------------
+<b>(Bold CSS)
+Coloca o texto a bold
+-----------------------------------------------------------------------------------------------------------------
+<em>(HTML)
+Dá enfâse ao texto, por padrão o texto fica em itálico.
+-----------------------------------------------------------------------------------------------------------------
+<i>(CSS)
+Coloca o texto em itálico

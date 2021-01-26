@@ -1,0 +1,80 @@
+Em vez de colocar fazer: 
+	console.log(a);console.log(b);
+Fazer:
+	console.log({a,b,c});
+Podemos usar CSS para ser mais perceptível a leitura, por exemplo:
+	console.log('%c Check', 'color: red;', 'font-wheight: bold');
+
+Se os objecto partilhar propriedades semelhantes dá jeito usar uma table para ver o log
+	console.log([a,b]);
+	
+Se tivermos problemas de performance podemos fazer log ao time de execução:
+	console.time('asd')
+	let i = 0;
+	while (i<100) {i++}
+	
+	console.timeEnd()
+
+Fazer trace aos logs
+
+	deleteMe = () => console.trace('Tracing data')
+	deleteMe()
+	deleteMe()
+
+Object Destruction => Optimização de escrita no código:
+Se tivermos um objecto com várias propriedades tipo:
+	turtle ={ name: bob, legs: 4, shell: true, type; 'amphibious', meal: 10, diet: 'berries'}
+Em vez de termos uma função do tipo:
+	function feed (animal){
+		retunr `Feed ${animal.name} {animal.meal} kilos of {animal.diet}`;
+	}
+Em vez de estarmo sempre a usar a variável animal do método fazemos de outra forma:
+	function feed ({ name, meal, diet}){
+		return `Feed ${name} ${meal} kilos of {diet}`;
+	}
+OU
+	function feed (animal){
+		animalItems {name, meal, diet} = animal;
+		return `Feed ${name} ${meal} kilos of ${diet}`;
+	}
+Desta maneira não poupamos na escrita de código e se for um metodo que tem varios argumentos a probabilidade de erro é inferior.
+
+Template Literals
+Em vez de termos: por exemplo:
+	bio = horse.name + ' is a horse with '  + horse.size + ' kilos ';
+Passamos para ``, e temos:
+	a = { name, size, skills} = horse;
+	bio = `${name} is a horse with ${size} kilos`;
+Tbm podemos usar isto com um metodo
+	function horseAge(str, age){
+		ageStr = age > 5 ? 'old' : 'young' ;
+		return `${str[0]}${ageStr} at ${age} years`;
+	}
+	bio 2 = horseAge `This horse is ${horse.age}`;
+	
+Spread Syntax
+Bad
+	pokemon = ['Arbok', 'Raichu', 'Pikachu'];
+	pokemon.push('Bulbasaur')
+	pokemon.push('Charmander')
+Em vez de fazermos push um a um, podemos fazer push todos de uma vez
+	pokemon = [...pokemon, 'Bulbasaur', 'Charmander']
+
+Looping
+Forma mais comum de usar loops 
+	total= 0;
+	withTax = [];
+	highValue = [];
+	for (i = 0; i < orders.length; i++){
+		total += orders[i];
+		withTax.push (orders[i]*1.1);
+		if (orders[i] > 100){
+			highValue.push(orders[i])
+		}
+	}
+Podemos escrever isto de uma maneira mais prática e com menos linhas de código (Kinda mais perceptível)
+	total = orders.reduce((acc,cur) => acc + cur); //Onde o acc é o valor acumulado e o car é o valor currente
+	withTax = orders.map(v => v * 1.1);
+	highValue = orders.filter( v => v > 100);
+
+async/await (ver mais tarde)
