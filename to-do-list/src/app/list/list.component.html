@@ -4,13 +4,13 @@
             <input 
             type="text"
             #cenasInput>
-            <button 
+            <!-- <button 
             class="btn btn-primary" 
-            (click)="onGo(cenasInput)">Go</button>
+            (click)="onGo(cenasInput)">Go</button> -->
         </div>
-        <button 
+        <!-- <button 
         class="btn btn-danger" 
-        (click)="onClear()">Clear List</button>
+        (click)="onClear()">Clear List</button> -->
         <!-- <button 
         class="btn btn-warning" 
         (click)="onRemoveItem()">Remove Item</button>
@@ -18,7 +18,7 @@
         <ul class="list-group">
             <li 
             class="list-group-item"
-            *ngFor="let element of lista; let i=index">
+            *ngFor="let element of listaElement; let i=index">
             <div class="row">
                 <div class="col-xs">
                     <div class="form-check">
@@ -26,8 +26,10 @@
                     </div>
                 </div>
                 <div class="col"
-                    [class.strikethrough]=" element.status === true"
-                    >{{ element.text }}
+                    [class.strikethrough]=" element.Estado === true"
+                    >
+                    {{ element.Id }}
+                    {{ element.Nome }}
                 </div>
                 <div class="float-right">
                     <button 
