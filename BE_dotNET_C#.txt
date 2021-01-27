@@ -1,0 +1,24 @@
+Enable CORS
+Todos os WebAPI projects, vêm com uma segurança que bloqueia request que têm domains diferentes!
+
+WebAPI controllers
+It handles incoming HTTP requests and send response back to the caller.
+Vai buscar a informação a tabelas no nosso caso.
+
+Http Request
+Get -> Get it!! Não pode ter Body.
+Put -> UpSert (Kinda Cenas novas?) Pode ter Body
+Post -> Insert (Cenas Novas) Pode ter Body
+ [Código -> Podemos usar para no códgio para consulta da BD, desde que seja feito um insert a cenas novas)]
+Delete -> Delete it!! Pode ter Body
+
+Ir buscar uma lista com uma dada condição, usando query parameters
+
+DAL -> Está entre os serviços e a DB.
+DAO -> Está no meio entre a aplicação (GET,PUT, POST) e o Serviço (). Serve como meio intermediário.
+
+Rest API
+Transferência Representacional de Estado, é um estilo de arquitetura de software que 
+define um conjunto de restrições a serem usadas para a criação de web services (serviços Web).
+É o contracto que tanto o Cliente como o Servidor têm de cumprir. 
+É maneira de comunicarem entre si.
